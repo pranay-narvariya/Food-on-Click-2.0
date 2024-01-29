@@ -1,0 +1,51 @@
+﻿<Page x:Class="Food.MngCategory"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1200"
+	Title="MngCategory" Loaded="Page_Loaded">
+    <DockPanel Height="800" Name="dockPanel1" Width="1200">
+        <Image Source="Media\g4636.png" Margin="25,0,0,0" Width="70" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" DockPanel.Dock="Top" MouseDown="Image_MouseDown">
+            <Image.Effect>
+                <DropShadowEffect
+                              ShadowDepth="2"
+                              Direction="200"
+                              Color="LightGray"
+                              Opacity="0.5"
+                             BlurRadius="10"/>
+            </Image.Effect>
+        </Image>
+        <GroupBox Header="Add Category" Height="180" Name="groupBox1" Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontSize="18" FontWeight="Normal" DockPanel.Dock="Top">
+            <Grid Height="Auto" Width="Auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80*" />
+                    <RowDefinition Height="80*" />
+                </Grid.RowDefinitions>
+                <Label Content="Enter Category Name:" Height="33" HorizontalAlignment="Left" Margin="20" Name="label1" VerticalAlignment="Top" Width="190" Grid.Column="0" Grid.Row="0"/>
+                <TextBox Height="33" HorizontalAlignment="Left" Margin="230,20,0,0" Name="textBox1" VerticalAlignment="Top" Width="250" Grid.Column="0" Grid.Row="0" />
+                <Button Content="Add" Height="30" HorizontalAlignment="Left" Margin="100,0,0,0" Name="button1" VerticalAlignment="Center" Width="75" Grid.Column="0" Grid.Row="1" Click="button1_Click" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Edit Categories" Height="Auto" Name="groupBox2" Width="Auto" VerticalAlignment="Stretch" DockPanel.Dock="Bottom" FontSize="18">
+            <DataGrid AutoGenerateColumns="False" Height="Auto" Name="dataGrid1" Width="Auto" AlternatingRowBackground="LightGray" IsReadOnly="False" CanUserAddRows="False" LoadingRow="dataGrid1_LoadingRow" CellEditEnding="dataGrid1_CellEditEnding">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding category_id}" Visibility="Hidden" Width="80"/>
+                    <DataGridTextColumn Binding="{Binding category_name, UpdateSourceTrigger=PropertyChanged}" Header="Category Name" FontWeight="Bold" Width="*"/>
+                    <DataGridTemplateColumn Header="Delete" Width="*" CanUserSort="False" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete" Click="Button_Click" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+    </DockPanel>
+</Page>

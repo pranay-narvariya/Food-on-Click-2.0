@@ -1,0 +1,68 @@
+﻿<Page x:Class="Food.MngLogin"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1200"
+	Title="Manage Login" Loaded="Page_Loaded">
+    <DockPanel Height="800" Name="dockPanel1" Width="1200">
+        <Image Source="Media\g4636.png" Margin="25,0,0,0" Width="70" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" DockPanel.Dock="Top" MouseDown="Image_MouseDown">
+            <Image.Effect>
+                <DropShadowEffect
+                              ShadowDepth="2"
+                              Direction="200"
+                              Color="LightGray"
+                              Opacity="0.5"
+                             BlurRadius="10"/>
+            </Image.Effect>
+        </Image>
+        <GroupBox Header="Add new Login" Height="285" Name="groupBox1" Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontSize="18" FontWeight="Normal" DockPanel.Dock="Top">
+            <Grid Height="Auto" Width="Auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80*" />
+                    <RowDefinition Height="120*" />
+                    <RowDefinition Height="80*" />
+                </Grid.RowDefinitions>
+                <Label Content="Select Employee:" Height="33" HorizontalAlignment="Left" Margin="20" Name="label1" VerticalAlignment="Top" Width="150" />
+                <ComboBox Height="33" HorizontalAlignment="Left" Margin="200,20,0,0" Name="comboBox1" VerticalAlignment="Top" Width="250" Grid.Column="0" Grid.Row="0" Text="" IsReadOnly="True" FontSize="16" Padding="5" />
+                <Label Content="Enter User ID:" Height="33" HorizontalAlignment="Left" Margin="20,20,0,0" Name="label2" VerticalAlignment="Top" Grid.Column="0" Grid.Row="1" Width="120" />
+                <TextBox Height="33" HorizontalAlignment="Left" Margin="200,20,0,0" Name="textBox3" VerticalAlignment="Top" Width="250" Grid.Column="0" Grid.Row="1" LostFocus="textBox3_LostFocus" />
+                <Label Content="Enter Password:" Height="33" HorizontalAlignment="Left" Margin="20,20,0,0" Name="label3" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Width="170" />
+                <TextBox Height="33" HorizontalAlignment="Left" Margin="200,20,0,0" Name="textBox4" VerticalAlignment="Top" Width="250" Grid.Column="1" Grid.Row="1" />
+                <Label Content="Re-Enter Password:" Height="33" HorizontalAlignment="Left" Margin="20,66,0,0" Name="label4" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Width="170" />
+                <TextBox Height="33" HorizontalAlignment="Left" Margin="200,66,0,0" Name="textBox5" VerticalAlignment="Top" Width="250" Grid.Column="1" Grid.Row="1" />
+                <Button Content="Add" Height="30" HorizontalAlignment="Left" Margin="100,0,0,0" Name="button1" VerticalAlignment="Center" Width="75" Grid.Column="0" Grid.Row="2" Click="button1_Click" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Edit Login" Height="Auto" Name="groupBox2" Width="Auto" VerticalAlignment="Stretch" DockPanel.Dock="Bottom" FontSize="18">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label Content="Search by UserName:" Height="33" HorizontalAlignment="Left" Margin="20,10,0,0" Name="label5" VerticalAlignment="Top" Grid.Row="0" Width="180" />
+                <TextBox Height="33" HorizontalAlignment="Left" Margin="200,10,0,0" Name="searchTextBox" VerticalAlignment="Top" Width="150" TextChanged="searchTextBox_TextChanged" />
+                <DataGrid AutoGenerateColumns="False" Height="Auto" Name="dataGrid1" Width="Auto" AlternatingRowBackground="LightGray" Grid.Row="1" IsReadOnly="False" CanUserAddRows="False" LoadingRow="dataGrid1_LoadingRow" RowEditEnding="dataGrid1_RowEditEnding" CellEditEnding="dataGrid1_CellEditEnding">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding id}" Visibility="Hidden" Width="80"/>
+                        <DataGridTextColumn Binding="{Binding login_username, UpdateSourceTrigger=PropertyChanged}" Header="User Name" FontWeight="Bold" Width="*" />
+                        <DataGridTextColumn Binding="{Binding login_password, UpdateSourceTrigger=PropertyChanged}" Header="Password" FontWeight="Bold" Width="*" />
+                        <DataGridTextColumn Binding="{Binding name}" Header="Employee Name" FontWeight="Bold" Width="*" IsReadOnly="True" />
+                        <DataGridTemplateColumn Header="Delete from Login" Width="160" CanUserSort="False" >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Delete" Command="Delete" Click="Button_Click" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </GroupBox>
+    </DockPanel>
+</Page>
